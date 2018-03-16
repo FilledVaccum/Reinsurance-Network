@@ -1,0 +1,39 @@
+/**
+ * Sample business network definition.
+ */
+namespace reinsurance.claims
+
+participant Reassureur identified by id {
+  o String id
+  o String namespace
+  o Double solde
+}
+participant Cedante identified by id {
+ o String id
+ o String name
+}
+
+assest Contrat identified by id{
+o String id
+o String namespace
+o String nature
+o String exercise
+--> Reassureur reassureur
+--> Cedante cedante
+}
+transaction DeclarerSinistre {
+  --> Reassureur reassureur
+  --> Cedante cedant
+  --> AviSinistre aviSinistre
+}
+
+transaction SouscrireContrat {
+  --> Reassureur reassureur
+  --> Contrat contrat
+}
+
+event DeclarationSinistreEvent {
+  --> AviSinistre aviSinistre
+  o Double soldeReassureurInitial
+  o Double soldeREassueurFinal
+}
