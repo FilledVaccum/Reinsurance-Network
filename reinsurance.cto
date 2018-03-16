@@ -5,22 +5,32 @@ namespace reinsurance.claims
 
 participant Reassureur identified by id {
   o String id
-  o String namespace
+  o String name
   o Double solde
 }
 participant Cedante identified by id {
  o String id
  o String name
+ o Double solde
 }
 
 assest Contrat identified by id{
 o String id
-o String namespace
+o String branche
 o String nature
 o String exercise
 --> Reassureur reassureur
 --> Cedante cedante
 }
+
+assest AvisSinistre identified by id {
+o String id
+o Srting namespace
+o Double montant
+o Boolean sent
+o String information
+}
+
 transaction DeclarerSinistre {
   --> Reassureur reassureur
   --> Cedante cedant
